@@ -1,9 +1,9 @@
 import os
+import aiohttp
 import discord
 from src.aclient import client
 from src import log
-import aiohttp
-import schedule
+
 
 logger = log.setup_logger(__name__)
 
@@ -191,4 +191,4 @@ def run_discord_bot():
 
     TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
-    schedule.every().hour.do(client.run(TOKEN))
+    client.run(TOKEN)

@@ -2,6 +2,7 @@ import os
 import json
 import asyncio
 import discord
+
 from src import log, responses
 from dotenv import load_dotenv
 from discord import app_commands
@@ -28,17 +29,16 @@ class aclient(discord.Client):
             "REPLYING_ALL_DISCORD_CHANNEL_ID"
         )
         self.bard_session_token = os.getenv("BARD_SESSION_TOKEN")
-
         self.loop = asyncio.get_event_loop()
         self.bing_chatbot = self.loop.run_until_complete(self.get_bing_chatbot_model())
         self.bard_chatbot = self.loop.run_until_complete(self.get_bard_chatbot_model())
 
-    def get_bing_chatbot_model(self) -> BingChatbot:
+    async def get_bing_chatbot_model(self) -> BingChatbot:
         cookies = json.loads(open("./cookies.json", encoding="utf-8").read())
-        return BingChatbot.create(cookies=cookies)
+        return await BingChatbot.create(cookies=cookies)
 
-    def get_bard_chatbot_model(self) -> BardChatbot:
-        return BardChatbot.create(session_id=self.bard_session_token)
+    async def get_bard_chatbot_model(self) -> BardChatbot:
+        return await BardChatbot.create(session_id=self.bard_session_token)
 
     async def send_bard_message(self, message, user_message):
         if self.is_replying_all == "False":

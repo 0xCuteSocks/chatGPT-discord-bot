@@ -1,3 +1,5 @@
+import time
+import schedule
 from src import bot
 from dotenv import load_dotenv
 import sys
