@@ -55,7 +55,7 @@ def run_discord_bot():
 
     @client.tree.command(name="chat", description="Have a chat with Bard")
     async def bard(interaction: discord.Interaction, *, message: str):
-        if client.is_replying_all == "True":
+        if client.is_replying_all == True:
             await interaction.response.defer(ephemeral=False)
             await interaction.followup.send(
                 "> **Warn: You already on replyAll mode. If you want to use slash command, switch to normal mode, use `/replyall` again**"
@@ -73,7 +73,7 @@ def run_discord_bot():
 
     @client.tree.command(name="bing", description="Have a chat with BingGPT")
     async def bing(interaction: discord.Interaction, *, message: str):
-        if client.is_replying_all == "True":
+        if client.is_replying_all == True:
             await interaction.response.defer(ephemeral=False)
             await interaction.followup.send(
                 "> **Warn: You already on replyAll mode. If you want to use slash command, switch to normal mode, use `/replyall` again**"
@@ -176,7 +176,7 @@ def run_discord_bot():
 
     @client.event
     async def on_message(message):
-        if client.is_replying_all == "True":
+        if client.is_replying_all == True:
             if message.author == client.user:
                 return
             if client.replying_all_discord_channel_id:

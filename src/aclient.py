@@ -64,7 +64,7 @@ class aclient(discord.Client):
 
                     for i in range(len(parts)):
                         if i % 2 == 0:  # indices that are even are not code blocks
-                            if self.is_replying_all == "True":
+                            if self.is_replying_all == True:
                                 await message.channel.send(
                                     parts[i], suppress_embeds=True
                                 )
@@ -93,7 +93,7 @@ class aclient(discord.Client):
                                     )
                                 ]
                                 for chunk in code_block_chunks:
-                                    if self.is_replying_all == "True":
+                                    if self.is_replying_all == True:
                                         await message.channel.send(
                                             f"```{chunk}```", suppress_embeds=True
                                         )
@@ -101,7 +101,7 @@ class aclient(discord.Client):
                                         await message.followup.send(
                                             f"```{chunk}```", suppress_embeds=True
                                         )
-                            elif self.is_replying_all == "True":
+                            elif self.is_replying_all == True:
                                 await message.channel.send(
                                     f"```{formatted_code_block}```",
                                     suppress_embeds=True,
@@ -117,16 +117,16 @@ class aclient(discord.Client):
                         for i in range(0, len(response), char_limit)
                     ]
                     for chunk in response_chunks:
-                        if self.is_replying_all == "True":
+                        if self.is_replying_all == True:
                             await message.channel.send(chunk, suppress_embeds=True)
                         else:
                             await message.followup.send(chunk, suppress_embeds=True)
-            elif self.is_replying_all == "True":
+            elif self.is_replying_all == True:
                 await message.channel.send(response, suppress_embeds=True)
             else:
                 await message.followup.send(response, suppress_embeds=True)
         except Exception as e:
-            if self.is_replying_all == "True":
+            if self.is_replying_all == True:
                 await message.channel.send(
                     "> **Bard Error: Something went wrong, please try again later!**"
                 )
@@ -156,7 +156,7 @@ class aclient(discord.Client):
 
                     for i in range(len(parts)):
                         if i % 2 == 0:  # indices that are even are not code blocks
-                            if self.is_replying_all == "True":
+                            if self.is_replying_all == True:
                                 await message.channel.send(
                                     parts[i], suppress_embeds=True
                                 )
@@ -185,7 +185,7 @@ class aclient(discord.Client):
                                     )
                                 ]
                                 for chunk in code_block_chunks:
-                                    if self.is_replying_all == "True":
+                                    if self.is_replying_all == True:
                                         await message.channel.send(
                                             f"```{chunk}```", suppress_embeds=True
                                         )
@@ -193,7 +193,7 @@ class aclient(discord.Client):
                                         await message.followup.send(
                                             f"```{chunk}```", suppress_embeds=True
                                         )
-                            elif self.is_replying_all == "True":
+                            elif self.is_replying_all == True:
                                 await message.channel.send(
                                     f"```{formatted_code_block}```",
                                     suppress_embeds=True,
@@ -209,19 +209,20 @@ class aclient(discord.Client):
                         for i in range(0, len(response), char_limit)
                     ]
                     for chunk in response_chunks:
-                        if self.is_replying_all == "True":
+                        if self.is_replying_all == True:
                             await message.channel.send(chunk, suppress_embeds=True)
                         else:
                             await message.followup.send(chunk, suppress_embeds=True)
-            elif self.is_replying_all == "True":
+            elif self.is_replying_all == True:
                 await message.channel.send(response, suppress_embeds=True)
             else:
                 await message.followup.send(response, suppress_embeds=True)
         except Exception as e:
-            if self.is_replying_all == "True":
+            if self.is_replying_all == True:
                 await message.channel.send(
                     "> **BingGPT Error: Something went wrong, please try again later!**"
                 )
+                await self.bing_chatbot.reset()
             else:
                 await message.followup.send(
                     "> **BingGPT Error: Something went wrong, please try again later!**"
@@ -249,7 +250,7 @@ class aclient(discord.Client):
 
                     for i in range(len(parts)):
                         if i % 2 == 0:  # indices that are even are not code blocks
-                            if self.is_replying_all == "True":
+                            if self.is_replying_all == True:
                                 await message.channel.send(parts[i])
                             else:
                                 await message.followup.send(parts[i])
@@ -274,11 +275,11 @@ class aclient(discord.Client):
                                     )
                                 ]
                                 for chunk in code_block_chunks:
-                                    if self.is_replying_all == "True":
+                                    if self.is_replying_all == True:
                                         await message.channel.send(f"```{chunk}```")
                                     else:
                                         await message.followup.send(f"```{chunk}```")
-                            elif self.is_replying_all == "True":
+                            elif self.is_replying_all == True:
                                 await message.channel.send(
                                     f"```{formatted_code_block}```"
                                 )
@@ -292,16 +293,16 @@ class aclient(discord.Client):
                         for i in range(0, len(response), char_limit)
                     ]
                     for chunk in response_chunks:
-                        if self.is_replying_all == "True":
+                        if self.is_replying_all == True:
                             await message.channel.send(chunk)
                         else:
                             await message.followup.send(chunk)
-            elif self.is_replying_all == "True":
+            elif self.is_replying_all == True:
                 await message.channel.send(response)
             else:
                 await message.followup.send(response)
         except Exception as e:
-            if self.is_replying_all == "True":
+            if self.is_replying_all == True:
                 await message.channel.send(
                     "> **Error: Something went wrong, please try again later!**"
                 )
