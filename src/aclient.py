@@ -227,6 +227,7 @@ class aclient(discord.Client):
                 await message.followup.send(
                     "> **BingGPT Error: Something went wrong, please try again later!**"
                 )
+                await self.bing_chatbot.reset()
             logger.exception(f"BingGPT Error while sending message: {e}")
 
     async def send_message(self, message, user_message):
